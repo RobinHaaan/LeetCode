@@ -1,0 +1,35 @@
+//回文数，首尾同时进行计算
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x < 0)
+        {
+            return false;
+        }
+        
+        int temp = x;
+        int n = 0;
+        long long int m = 1;
+        while(temp != 0)
+        {
+            temp /= 10;
+            n++;
+            m *= 10;
+        }
+       
+        n /= 2;
+        m /= 10;
+        while(n != 0)
+        {
+            if(x / m != x % 10)
+            {
+                return false;
+            }
+            x %= m;
+			x /= 10;
+            m /= 100;
+			n--;
+        }
+        return true;
+    }
+};
