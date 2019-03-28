@@ -1,0 +1,40 @@
+//暴力法，时间复杂度O(n^2)，空间复杂度O(1)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> res;
+        for(int i = 0; i < nums.size(); i++)
+        {
+            for(int j = i+1; j < nums.size(); j++)
+            {
+                if(nums[j] == target - nums[i])
+                {
+                    res.push_back(i);
+                    res.push_back(j);
+                    return res;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
+//使用map,时间复杂度O(n)，空间复杂度O(n)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> res;
+        unordered_map<int, int> keymap;
+        for(int i = 0; i < nums.size(); i++)
+        {
+            if(keymap.count(target - nums[i]) > 0)
+            {
+                res.push_back(keymap.at(target - nums[i]));
+                res.push_back(i);
+            }
+            keymap[nums[i]] = i;
+        }
+        return res;
+    }
+};
