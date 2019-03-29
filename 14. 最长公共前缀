@@ -1,3 +1,4 @@
+//纵向搜索
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
@@ -37,5 +38,79 @@ public:
             }
         }
         return res;
+    }
+};
+
+
+//横向搜索
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        string common_for = "";
+        int common_len = 0;
+        
+        if(strs.empty())
+        {
+            return common_for;
+        }
+        
+        for(vector<string>::iterator it = strs.begin(); it != strs.end(); it++)
+        {
+            if(it == strs.begin())
+            {
+                common_for = *it;
+                common_len =  it->size();
+                continue;
+            }
+            
+            common_len = common_len > it->length() ? it->length() : common_len;
+            
+            for(int i = 0; i < common_len; i++)
+            {
+                if(common_for[i] != (*it)[i])
+                {
+                    common_len = i;
+                    break;
+                }
+            }
+        }
+        
+        return common_for.erase(common_len);
+    }
+};
+
+//4ms，优解
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+
+        string common_for = "";
+        size_t common_len = 0;
+
+        if (strs.empty())   return common_for;
+
+        for (auto iter = strs.cbegin();
+            iter != strs.cend();
+            ++iter)
+        {
+            if (iter == strs.cbegin()) {
+                common_for = *iter;
+                common_len = common_for.length();
+                continue;
+            }
+
+            common_len = common_len < iter->length() ? common_len : iter->length();
+
+            for (int i = 0;
+                i < common_len;
+                ++i) {
+                if (common_for[i] != (*iter)[i]) {
+                    common_len = i;
+                    break;
+                }
+            }
+        }
+
+        return common_for.erase(common_len);
     }
 };
