@@ -1,0 +1,46 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        if(s.empty())
+        {
+            return true;
+        }
+        
+        stack<char> left;
+        for(string::iterator it = s.begin(); it != s.end(); it++)
+        {
+            switch(*it)
+            {
+                case '(':
+                case '[':
+                case '{': left.push(*it);break;
+                case ')':
+                    {
+                        if(left.empty() || left.top() != '(')
+                            return false;
+                        left.pop();break;
+                    }
+                case ']':
+                    {
+                        if(left.empty() || left.top() != '[')
+                            return false;
+                        left.pop();break;
+                    }
+                case '}':
+                    {
+                        if(left.empty() || left.top() != '{')
+                            return false;
+                        left.pop();break;
+                    }
+                default:
+                    break;
+            }
+        }
+        
+        if(!left.empty())
+        {
+            return false;
+        }
+        return true;
+    }
+};
