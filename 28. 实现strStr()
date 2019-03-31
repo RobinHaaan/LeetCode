@@ -1,0 +1,33 @@
+//非kmp算法
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if(needle.empty()) return 0;
+        
+        if(needle.size() > haystack.size()) return -1;
+        
+        int j = 0;
+        int i = 0;
+        for(; i < haystack.size(); i++)
+        {
+            if(j == needle.size())
+            {
+                return i-needle.size();
+            }
+            if(haystack[i] == needle[j])
+            {
+                j++;
+            }
+            else
+            {
+                i -= j;
+                j = 0;
+            }
+        }
+        if(j == needle.size())
+        {
+            return i-needle.size();
+        }
+        return -1;
+    }
+};
