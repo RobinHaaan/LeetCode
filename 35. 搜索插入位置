@@ -31,7 +31,8 @@ public:
     }
 };
 
-//顺序遍历
+
+//遍历
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
