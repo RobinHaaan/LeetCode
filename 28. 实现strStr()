@@ -1,4 +1,4 @@
-//非kmp算法
+//非kmp算法的暴力法
 class Solution {
 public:
     int strStr(string haystack, string needle) {
