@@ -26,9 +26,9 @@ public:
                 return false;
             }
             x %= m;
-			x /= 10;
+	    x /= 10;
             m /= 100;
-			n--;
+	    n--;
         }
         return true;
     }
