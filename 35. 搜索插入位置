@@ -1,3 +1,4 @@
+//二分查找
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
@@ -27,5 +28,20 @@ public:
             return low;
         }
         return low+1;
+    }
+};
+
+//顺序遍历
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        for(int i = 0; i < nums.size(); i++)
+        {
+            if(nums[i] >= target)
+            {
+                return i;
+            }
+        }
+        return nums.size();
     }
 };
