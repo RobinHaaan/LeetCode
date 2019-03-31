@@ -11,7 +11,7 @@ public:
         {
             if(nums[i] != val)
             {
-                nums[k++] = nums[i];
+                nums[k++] = nums[i];//先赋值在++
             }
         }
         return k;
