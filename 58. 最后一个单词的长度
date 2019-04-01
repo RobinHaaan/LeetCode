@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int res = 0;
+        for(int i = s.size()-1; i >= 0; i--)
+        {
+            if(s[i] == ' ')
+            {
+                continue;
+            }
+            else
+            {
+                res++;
+                if(i == 0 || s[i-1] == ' ')
+                {
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+//一个4ms，感觉容易理解的例子
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        if(s.size()==0) return 0;      //空串判断
+        
+        int len = 0;
+        int first=-1;              //定义为-1，因为-1绝对用不到
+        for(int i=s.size()-1;i>=0;i--){   //寻找第一个非空的字符
+            if(s[i]!=' '){
+                first=i;
+                break;
+            }
+        }
+        
+        if(first==-1) return 0;    //如果全串无一个非空字符，则return 0
+        
+        for(int j=first;j>=0;j--){
+            if(s[j]!=' ') len++;
+            else          break;
+        }
+        return len;
+    }
+};
