@@ -1,0 +1,18 @@
+//快慢指针
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode* high = head;
+        ListNode* low = head;
+        while(high != NULL || high->next != NULL)
+        {
+            low = low->next;
+            high = high->next->next;
+            if(low == high)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+};
