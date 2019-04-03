@@ -1,0 +1,25 @@
+//双指针，将字符串中大写字母都转换成小写
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int i = 0;
+        int j = s.size()-1;
+        transform(s.begin(), s.end(),s.begin(), ::tolower);
+        while(i < j)
+        {
+            if(!isalnum(s[i]))
+            {
+                ++i;continue;
+            }
+            if(!isalnum(s[j]))
+            {
+                --j;continue;
+            }
+            if(s[i++] != s[j--])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
