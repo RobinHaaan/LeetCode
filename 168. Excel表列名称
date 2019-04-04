@@ -1,0 +1,23 @@
+//类似26进制，但需要进行处理
+class Solution {
+public:
+    string convertToTitle(int n) {
+        string res;
+        char temp;
+        while(n > 0)
+        {
+            if(n % 26 == 0)
+            {
+                temp = 'Z';
+                n--;
+            }
+            else
+            {
+                temp = n%26 - 1 + 'A';
+            }
+            res = temp + res;
+            n /= 26;
+        }
+        return res;
+    }
+};
