@@ -1,0 +1,109 @@
+//计算长度差值，一起往后走，入口会相遇
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode * a = headA;
+        ListNode * b = headB;
+        int asize = 0;
+        int bsize = 0;
+        
+        while(a != NULL)
+        {
+            a = a->next;
+            asize++;
+        }
+        while(b != NULL)
+        {
+            b = b->next;
+            bsize++;
+        }
+        
+        a = headA;
+        b = headB;
+        if(asize > bsize)
+        {
+            int count = asize - bsize;
+            while(count-- > 0)
+            {
+                a = a->next;
+            }
+        }
+        else
+        {
+            int count = bsize - asize;
+            while(count-- > 0)
+            {
+                b = b->next;
+            }
+        }
+        
+        while(a != NULL && b != NULL)
+        {
+            if(a == b)
+            {
+                return a;
+            }
+            a = a->next;
+            b = b->next;
+        }
+        return NULL;
+    }
+};
+
+//定义两个指针，一个指向A的头，一个指向B的头
+//两个指针同时向后走，到末尾之后就转向另一个链表的头节点
+//这样就使得相遇节点之前两个指针的路径相同，如果没有交点，那么末尾的null就是他们相同的点
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode* pa = headA;
+        ListNode* pb = headB;
+        
+        while(pa != pb)
+        {
+            pa = (pa == NULL) ? headB : pa->next;
+            pb = (pb == NULL) ? headA : pb->next;
+        }
+        return pa;
+    }
+};
+
+//先将链表做成有环的，然后判断环的入口就是相交链表
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(headA == NULL || headB == NULL)
+        {
+            return NULL;
+        }
+        
+        ListNode * last = headB;
+        while(last->next != NULL)
+        {
+            last = last->next;
+        }
+        last->next = headB;
+        
+        ListNode * fast = headA;
+        ListNode * slow = headA;
+        while(fast != NULL && fast->next != NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+            if(fast == slow)
+            {
+                slow = headA;
+                while(slow != fast)
+                {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                last->next = NULL;
+                return fast;
+            }
+        }
+        
+        last->next = NULL;
+        return NULL;
+    }
+};
