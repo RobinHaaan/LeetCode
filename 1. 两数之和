@@ -19,7 +19,7 @@ public:
     }
 };
 
-//使用map,时间复杂度O(n)，空间复杂度O(n)
+//使用hashmap,时间复杂度O(n)，空间复杂度O(n)
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
